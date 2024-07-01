@@ -1,6 +1,7 @@
 package dev.bassi.btgpactual.orderms.mapper;
 
 import dev.bassi.btgpactual.orderms.dto.OrderCreatedEvent;
+import dev.bassi.btgpactual.orderms.dto.OrderResponse;
 import dev.bassi.btgpactual.orderms.entity.OrderEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
@@ -18,6 +19,8 @@ public interface AutoOrderMapper {
 
     @Mapping(target = "totalOrderValue", ignore = true)
     OrderEntity mapToOrderEntity(OrderCreatedEvent event);
+
+    OrderResponse mapToOrderResponse(OrderEntity entity);
 
     @AfterMapping
     default void calculatesTotalOrderValue(@MappingTarget OrderEntity entity) {
